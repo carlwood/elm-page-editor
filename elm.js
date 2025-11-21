@@ -4463,12 +4463,14 @@ var $author$project$Main$init = {
 	alertMessage: '10% off our yoga classes this week only!',
 	description: 'Join us for exciting events and workshops. Sign up now to secure your spot!',
 	editorOpen: false,
+	showAlert: false,
 	theme: 'default',
 	themes: _List_fromArray(
 		[
 			_Utils_Tuple2('default', 'Default'),
 			_Utils_Tuple2('vibrant', 'Vibrant'),
-			_Utils_Tuple2('cool', 'Cool')
+			_Utils_Tuple2('cool', 'Cool'),
+			_Utils_Tuple2('forest', 'Forest')
 		]),
 	title: 'Upcoming Brighton Yoga events'
 };
@@ -5214,6 +5216,11 @@ var $author$project$Main$update = F2(
 				return _Utils_update(
 					model,
 					{description: newDescription});
+			case 'UpdateShowAlert':
+				var newShowAlert = msg.a;
+				return _Utils_update(
+					model,
+					{showAlert: newShowAlert});
 			case 'UpdateAlertMessage':
 				var newAlertMessage = msg.a;
 				return _Utils_update(
@@ -5240,13 +5247,29 @@ var $author$project$Main$UpdateDescription = function (a) {
 var $author$project$Main$UpdateEditorOpen = function (a) {
 	return {$: 'UpdateEditorOpen', a: a};
 };
+var $author$project$Main$UpdateShowAlert = function (a) {
+	return {$: 'UpdateShowAlert', a: a};
+};
 var $author$project$Main$UpdateTheme = function (a) {
 	return {$: 'UpdateTheme', a: a};
 };
 var $author$project$Main$UpdateTitle = function (a) {
 	return {$: 'UpdateTitle', a: a};
 };
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
 var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$checked = $elm$html$Html$Attributes$boolProperty('checked');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -5265,6 +5288,7 @@ var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$core$Basics$not = _Basics_not;
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -5379,7 +5403,9 @@ var $author$project$Main$view = function (model) {
 						$elm$html$Html$div,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('alert-message')
+								$elm$html$Html$Attributes$class('alert-message'),
+								$elm$html$Html$Attributes$class(
+								model.showAlert ? 'show' : 'hide')
 							]),
 						_List_fromArray(
 							[
@@ -5520,22 +5546,54 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$label,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$for('alert-message')
+										$elm$html$Html$Attributes$for('show-alert')
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text('Alert message')
+										A2(
+										$elm$html$Html$input,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$type_('checkbox'),
+												$elm$html$Html$Attributes$checked(model.showAlert),
+												$elm$html$Html$Events$onInput(
+												$elm$core$Basics$always(
+													$author$project$Main$UpdateShowAlert(!model.showAlert))),
+												$elm$html$Html$Attributes$id('show-alert')
+											]),
+										_List_Nil),
+										$elm$html$Html$text('Show alert message')
 									])),
 								A2(
-								$elm$html$Html$textarea,
+								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$value(model.alertMessage),
-										$elm$html$Html$Events$onInput($author$project$Main$UpdateAlertMessage),
-										$elm$html$Html$Attributes$id('alert-message'),
-										$elm$html$Html$Attributes$rows(3)
+										$elm$html$Html$Attributes$class(
+										model.showAlert ? 'show' : 'hide')
 									]),
-								_List_Nil),
+								_List_fromArray(
+									[
+										A2(
+										$elm$html$Html$label,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$for('alert-message')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('Alert message')
+											])),
+										A2(
+										$elm$html$Html$textarea,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$value(model.alertMessage),
+												$elm$html$Html$Events$onInput($author$project$Main$UpdateAlertMessage),
+												$elm$html$Html$Attributes$id('alert-message'),
+												$elm$html$Html$Attributes$rows(3)
+											]),
+										_List_Nil)
+									])),
 								A2(
 								$elm$html$Html$label,
 								_List_fromArray(

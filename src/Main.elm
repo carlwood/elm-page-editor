@@ -21,6 +21,7 @@ main =
 type alias Model = 
     { title : String
     , description : String
+    , showAlert : Bool
     , alertMessage: String
     , theme: String
     , themes : List (String, String) -- (value, label)
@@ -31,12 +32,14 @@ init : Model
 init = 
     { title = "Upcoming Brighton Yoga events"
     , description = "Join us for exciting events and workshops. Sign up now to secure your spot!"
+    , showAlert = False
     , alertMessage = "10% off our yoga classes this week only!"
     , theme = "default"
     , themes = 
         [ ("default", "Default")
         , ("vibrant", "Vibrant")
         , ("cool", "Cool")
+        , ("forest", "Forest")
         ]
     , editorOpen = False
     }
@@ -45,6 +48,7 @@ init =
 
 type Msg
     = UpdateTitle String
+    | UpdateShowAlert Bool
     | UpdateAlertMessage String
     | UpdateDescription String
     | UpdateTheme String
@@ -57,6 +61,8 @@ update msg model =
             { model | title = newTitle }
         UpdateDescription newDescription ->
             { model | description = newDescription }
+        UpdateShowAlert newShowAlert ->
+            { model | showAlert = newShowAlert }
         UpdateAlertMessage newAlertMessage ->
             { model | alertMessage = newAlertMessage }
         UpdateTheme newTheme ->
@@ -79,7 +85,7 @@ view model =
                 h1 [] [ text model.title ]
                 , div [ class "page-description" ]
                     [ text (model.description) ]
-                , div [ class "alert-message" ]
+                , div [ class "alert-message", class (if model.showAlert then "show" else "hide") ]
                     [ text (model.alertMessage) ]
                 , div [ class "events-list" ]
                     (List.map
@@ -109,8 +115,11 @@ view model =
                     , input [ type_ "text", value model.title, onInput UpdateTitle, id "page-title" ] []
                     , label [ for "page-description"] [ text "Page description"]
                     , textarea [ value model.description, onInput UpdateDescription, id "page-description", rows 5 ] []
-                    , label [ for "alert-message"] [ text "Alert message" ]
-                    , textarea [ value model.alertMessage, onInput UpdateAlertMessage, id "alert-message", rows 3 ] []
+                    , label [ for "show-alert"] [ input [ type_ "checkbox", checked model.showAlert, onInput (always (UpdateShowAlert (not model.showAlert))), id "show-alert" ] [], text "Show alert message" ]
+                    , div [class (if model.showAlert then "show" else "hide")] [
+                        label [ for "alert-message"] [ text "Alert message" ]                        
+                        , textarea [ value model.alertMessage, onInput UpdateAlertMessage, id "alert-message", rows 3 ] []
+                    ]
                     , label [ for "theme"] [ text "Theme" ]
                     , Html.select [ value model.theme, onInput UpdateTheme, id "theme" ]
                         (List.map

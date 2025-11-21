@@ -31,9 +31,8 @@ h1 {
 
 h2 {
   margin-bottom: 1.25rem;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
-    
 }
 
 h3 {
@@ -63,12 +62,12 @@ h3 {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.66rem 1.33rem;
   background-color: #333;
   color: #eee;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -102,7 +101,6 @@ h3 {
 }
 
 .preview--cool {
-  border-color: blue;
   background-color: #e0f7fa;
 }
 
@@ -112,6 +110,18 @@ h3 {
 
 .preview--cool .event-card {
   border-color: #80deea;
+}
+
+.preview--forest {
+  background-color: #e8f5e9;
+}
+
+.preview--forest h1 {
+  color: #2e7d32;
+}
+
+.preview--forest .event-card {
+  border-color: #a5d6a7;
 }
 
 .page-description {
@@ -173,4 +183,24 @@ select {
   border-radius: 4px;
   font-size: 16px;
   font-family: var(--font-family);
+}
+
+label:has(input) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
