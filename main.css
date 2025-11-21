@@ -1,0 +1,154 @@
+/* CSS reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Custom styles */
+
+:root {
+  --font-family: 'Inter', sans-serif;
+  --heading-color: #222;
+  --text-color: #333;
+  --text-color-muted: #555;
+}
+
+body {
+  height: 100vh;
+  background-color: #f9f9f9;
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--heading-color);
+}
+
+h2 {
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  font-size: 16px;
+    
+}
+
+h3 {
+  color: var(--heading-color);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Editor */
+.editor {
+  flex-basis: 400px;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+/* Preview */
+
+.preview {
+  flex: 1;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.preview--vibrant {
+  background-color: #f3deff;
+}
+
+.preview--vibrant h1 {
+  color: #6a1b9a;
+}
+
+.preview--vibrant .event-card {
+  border-color: #d1c4e9;
+}
+
+.preview--cool {
+  border-color: blue;
+  background-color: #e0f7fa;
+}
+
+.preview--cool h1 {
+  color: #006064;
+}
+
+.preview--cool .event-card {
+  border-color: #80deea;
+}
+
+.page-description {
+  margin-bottom: 1rem;
+}
+
+.alert-message {
+  padding: 0.75rem;
+  background-color: #ffefc1;
+  border: 1px solid #ffd966;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #665500;
+  margin-bottom: 2rem;
+}
+
+/* Event cards */
+
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.event-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.event-card button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Forms */
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: var(--font-family);
+}
