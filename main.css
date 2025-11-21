@@ -9,7 +9,7 @@
 /* Custom styles */
 
 :root {
-  --font-family: 'Inter', sans-serif;
+  --font-family: 'Rubik', sans-serif;
   --heading-color: #222;
   --text-color: #333;
   --text-color-muted: #555;
@@ -71,14 +71,19 @@ h3 {
   }
 }
 
+button {
+  font-family: var(--font-family);
+  font-weight: 500;
+}
+
 .edit-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
   padding: 0.66rem 1.33rem;
-  background-color: #333;
-  color: #eee;
-  border: none;
+  background-color: #fff;
+  color: #007bff;
+  border: solid 1px #007bff;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
