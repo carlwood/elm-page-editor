@@ -23,7 +23,7 @@ body {
 }
 
 h1 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 600;
   font-size: 24px;
   color: var(--heading-color);
@@ -100,6 +100,10 @@ h3 {
   border-color: #d1c4e9;
 }
 
+.preview--vibrant .event-card button {
+  background-color: #8e24aa;
+}
+
 .preview--cool {
   background-color: #e0f7fa;
 }
@@ -110,6 +114,10 @@ h3 {
 
 .preview--cool .event-card {
   border-color: #80deea;
+}
+
+.preview--cool .event-card button {
+  background-color: #00838f;
 }
 
 .preview--forest {
@@ -124,8 +132,12 @@ h3 {
   border-color: #a5d6a7;
 }
 
+.preview--forest .event-card button {
+  background-color: #388e3c;
+}
+
 .page-description {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .alert-message {
@@ -142,7 +154,7 @@ h3 {
 
 .events-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
 }
 
@@ -163,6 +175,11 @@ h3 {
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
+}
+
+.event-card__footer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* Forms */

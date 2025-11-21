@@ -95,7 +95,7 @@ view model =
                                 , div [] [ text (event.date) ]
                                 , div [] [ text ("Location: " ++ event.location) ]
                                 , div [] [ text ("Price: " ++ event.price) ]
-                                , div [] [ button [] [ text "Buy ticket" ] ]
+                                , div [ class "event-card__footer" ] [ button [] [ text "Buy ticket" ] ]
                                 ]
                         )
                         [ { title = "Sunrise Yoga", date = "Dec 15, 2025", location = "Brighton Beach", price = "£15" }
@@ -103,6 +103,8 @@ view model =
                         , { title = "Yoga & Brunch", date = "Dec 19, 2025", location = "Cafe Bliss", price = "£20" }
                         , { title = "Evening Meditation", date = "Dec 22, 2025", location = "Community Hall", price = "£10" }
                         , { title = "Family Yoga", date = "Dec 25, 2025", location = "Central Park", price = "£18" }
+                        , { title = "New Year Yoga Retreat", date = "Jan 1-3, 2026", location = "Countryside Lodge", price = "£150" }
+                        , { title = "Power Yoga", date = "Jan 5, 2026", location = "Downtown Gym", price = "£14" }
                         ]
                     )
             ]

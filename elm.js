@@ -5458,7 +5458,10 @@ var $author$project$Main$view = function (model) {
 												])),
 											A2(
 											$elm$html$Html$div,
-											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$class('event-card__footer')
+												]),
 											_List_fromArray(
 												[
 													A2(
@@ -5477,7 +5480,9 @@ var $author$project$Main$view = function (model) {
 									{date: 'Dec 18, 2025', location: 'Yoga Studio', price: '£12', title: 'Vinyasa Flow'},
 									{date: 'Dec 19, 2025', location: 'Cafe Bliss', price: '£20', title: 'Yoga & Brunch'},
 									{date: 'Dec 22, 2025', location: 'Community Hall', price: '£10', title: 'Evening Meditation'},
-									{date: 'Dec 25, 2025', location: 'Central Park', price: '£18', title: 'Family Yoga'}
+									{date: 'Dec 25, 2025', location: 'Central Park', price: '£18', title: 'Family Yoga'},
+									{date: 'Jan 1-3, 2026', location: 'Countryside Lodge', price: '£150', title: 'New Year Yoga Retreat'},
+									{date: 'Jan 5, 2026', location: 'Downtown Gym', price: '£14', title: 'Power Yoga'}
 								])))
 					])),
 				A2(
