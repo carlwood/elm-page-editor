@@ -7,7 +7,7 @@ module Main exposing (..)
 
 
 import Browser
-import Html exposing (Html, button, div, h1, h2, h3, input, textarea, text, label)
+import Html exposing (Html, button, div, h1, h2, h3, p, input, textarea, text, label)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput, onClick)
 
@@ -111,6 +111,7 @@ view model =
             , div [class "editor", class (if model.editorOpen then "editor--open" else "editor--closed")]
             [
                 h2 [] [ text "Public Page Editor" ]
+                , p [] [ text "Use the form below to customise your public page. Changes will be reflected in the preview on the left." ]
                 , Html.form []
                 [
                     label [ for "page-title"] [ text "Page title"]
