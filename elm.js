@@ -4458,9 +4458,11 @@ var $elm$core$Set$toList = function (_v0) {
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
+var $elm$core$Basics$False = {$: 'False'};
 var $author$project$Main$init = {
 	alertMessage: '10% off our yoga classes this week only!',
 	description: 'Join us for exciting events and workshops. Sign up now to secure your spot!',
+	editorOpen: false,
 	theme: 'default',
 	themes: _List_fromArray(
 		[
@@ -4491,7 +4493,6 @@ var $elm$core$Result$Ok = function (a) {
 var $elm$json$Json$Decode$OneOf = function (a) {
 	return {$: 'OneOf', a: a};
 };
-var $elm$core$Basics$False = {$: 'False'};
 var $elm$core$Basics$add = _Basics_add;
 var $elm$core$Maybe$Just = function (a) {
 	return {$: 'Just', a: a};
@@ -5218,11 +5219,16 @@ var $author$project$Main$update = F2(
 				return _Utils_update(
 					model,
 					{alertMessage: newAlertMessage});
-			default:
+			case 'UpdateTheme':
 				var newTheme = msg.a;
 				return _Utils_update(
 					model,
 					{theme: newTheme});
+			default:
+				var isOpen = msg.a;
+				return _Utils_update(
+					model,
+					{editorOpen: isOpen});
 		}
 	});
 var $author$project$Main$UpdateAlertMessage = function (a) {
@@ -5230,6 +5236,9 @@ var $author$project$Main$UpdateAlertMessage = function (a) {
 };
 var $author$project$Main$UpdateDescription = function (a) {
 	return {$: 'UpdateDescription', a: a};
+};
+var $author$project$Main$UpdateEditorOpen = function (a) {
+	return {$: 'UpdateEditorOpen', a: a};
 };
 var $author$project$Main$UpdateTheme = function (a) {
 	return {$: 'UpdateTheme', a: a};
@@ -5256,13 +5265,29 @@ var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
 var $elm$html$Html$Events$alwaysStop = function (x) {
 	return _Utils_Tuple2(x, true);
 };
 var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
 	return {$: 'MayStopPropagation', a: a};
 };
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
 var $elm$html$Html$Events$stopPropagationOn = F2(
 	function (event, decoder) {
 		return A2(
@@ -5320,6 +5345,19 @@ var $author$project$Main$view = function (model) {
 					]),
 				_List_fromArray(
 					[
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('edit-button'),
+								$elm$html$Html$Events$onClick(
+								model.editorOpen ? $author$project$Main$UpdateEditorOpen(false) : $author$project$Main$UpdateEditorOpen(true))
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text(
+								model.editorOpen ? 'Close' : 'Edit page')
+							])),
 						A2(
 						$elm$html$Html$h1,
 						_List_Nil,
@@ -5420,7 +5458,9 @@ var $author$project$Main$view = function (model) {
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('editor')
+						$elm$html$Html$Attributes$class('editor'),
+						$elm$html$Html$Attributes$class(
+						model.editorOpen ? 'editor--open' : 'editor--closed')
 					]),
 				_List_fromArray(
 					[

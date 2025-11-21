@@ -9,7 +9,7 @@ module Main exposing (..)
 import Browser
 import Html exposing (Html, button, div, h1, h2, h3, input, textarea, text, label)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
+import Html.Events exposing (onInput, onClick)
 
 -- MAIN
 
@@ -24,6 +24,7 @@ type alias Model =
     , alertMessage: String
     , theme: String
     , themes : List (String, String) -- (value, label)
+    , editorOpen : Bool
     }
 
 init : Model
@@ -37,6 +38,7 @@ init =
         , ("vibrant", "Vibrant")
         , ("cool", "Cool")
         ]
+    , editorOpen = False
     }
 
 -- UPDATE
@@ -46,6 +48,7 @@ type Msg
     | UpdateAlertMessage String
     | UpdateDescription String
     | UpdateTheme String
+    | UpdateEditorOpen Bool
 
 update : Msg -> Model -> Model
 update msg model =
@@ -58,6 +61,8 @@ update msg model =
             { model | alertMessage = newAlertMessage }
         UpdateTheme newTheme ->
             { model | theme = newTheme }
+        UpdateEditorOpen isOpen ->
+            { model | editorOpen = isOpen }
         
 
 -- VIEW
@@ -68,6 +73,9 @@ view model =
         [
             div [ class ("preview " ++ "preview--" ++ model.theme) ]
             [
+                button [ class "edit-button", onClick (if model.editorOpen then UpdateEditorOpen False else UpdateEditorOpen True) ]
+                    [ text (if model.editorOpen then "Close" else "Edit page") ]
+                ,
                 h1 [] [ text model.title ]
                 , div [ class "page-description" ]
                     [ text (model.description) ]
@@ -92,7 +100,7 @@ view model =
                         ]
                     )
             ]
-            , div [class "editor"]
+            , div [class "editor", class (if model.editorOpen then "editor--open" else "editor--closed")]
             [
                 h2 [] [ text "Public Page Editor" ]
                 , Html.form []
