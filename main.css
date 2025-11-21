@@ -58,6 +58,19 @@ h3 {
   display: none;
 }
 
+@media (max-width: 768px) {
+  .editor {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+    /* Move box-shadow to top */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+}
+
 .edit-button {
   position: absolute;
   top: 1rem;
